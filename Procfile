@@ -1,1 +1,1 @@
-web: gunicorn PotyTravel.wsgi --log-file -
+web: gunicorn EdilsonTransfer.wsgi --log-file -
