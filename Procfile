@@ -1,0 +1,1 @@
+web: gunicorn PotyTravel.wsgi --log-file -
