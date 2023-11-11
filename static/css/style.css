@@ -76,7 +76,7 @@ Table of contents
 2. Theme variables
 ======================*/
 
-:root {
+/* :root {
   --body-font: "Roboto", sans-serif;
   --heading-font: "Inter", sans-serif;
   --theme-color: #ffb300;
@@ -86,6 +86,32 @@ Table of contents
   --color-dark: #111111;
   --color-green: #11b76b;
   --color-blue: #0049d0;
+  --color-yellow: #fba707;
+  --hero-overlay-color: #01060f;
+  --slider-arrow-bg: rgba(255, 255, 255, 0.2);
+  --box-shadow: 0 0 40px 5px rgb(0 0 0 / 5%);
+  --box-shadow2: 0 0 15px rgba(0, 0, 0, 0.17);
+  --transition: all 0.5s ease-in-out;
+  --transition2: all 0.3s ease-in-out;
+  --border-info-color: rgba(0, 0, 0, 0.08);
+  --border-info-color2: rgba(0, 0, 0, 0.05);
+  --border-white-color: rgba(255, 255, 255, 0.08);
+  --border-white-color2: rgba(255, 255, 255, 0.05);
+  --footer-bg: #111111;
+  --footer-bg2: #181818;
+  --footer-text-color: #f5faff;
+} */
+
+:root {
+  --body-font: "Roboto", sans-serif;
+  --heading-font: "Inter", sans-serif;
+  --theme-color: #38b6ff;
+  --theme-bg-light: #f9f9f9;
+  --body-text-color: #757f95;
+  --color-white: #ffffff;
+  --color-dark: #111111;
+  --color-green: #11b76b;
+  --color-blue: #01077a;
   --color-yellow: #fba707;
   --hero-overlay-color: #01060f;
   --slider-arrow-bg: rgba(255, 255, 255, 0.2);
@@ -673,7 +699,7 @@ label {
 
 .theme-btn {
   font-size: 14px;
-  color: var(--color-dark);
+  color: var(--color-white);
   padding: 14px 25px;
   transition: all 0.5s;
   text-transform: uppercase;
@@ -694,7 +720,7 @@ label {
   content: "";
   height: 300px;
   width: 300px;
-  background: var(--color-dark);
+  background: var(--color-blue);
   border-radius: 50%;
   position: absolute;
   top: 50%;
