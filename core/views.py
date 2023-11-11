@@ -8,9 +8,7 @@ def index(request):
     form = BookingForm()
 
     # Hero Slider
-    hero_slider = Slider.objects.all()
-    for slider in hero_slider:
-        print(slider.imagem.url)
+    hero_slider = Slider.objects.all().order_by('ordem')
 
     context = {
         'form': form,
