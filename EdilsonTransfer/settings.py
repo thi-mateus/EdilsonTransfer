@@ -133,4 +133,5 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configurações de segurança
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = os.environ.get(
+    'DJANGO_SECURE_SSL_REDIRECT', 'False') == 'True'
