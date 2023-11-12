@@ -10,6 +10,9 @@ def index(request):
     # Hero Slider
     hero_slider = Slider.objects.all().order_by('ordem')
 
+    for slider in hero_slider:
+        print(slider.imagem.url)
+
     context = {
         'form': form,
         'hero_slider': hero_slider
