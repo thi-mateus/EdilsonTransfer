@@ -1,3 +1,7 @@
 Superuser: edilsontransfer
 Email: edilsontransfernatal@gmail.com
 Senha: edilsontransferadmin
+
+Postgree
+user: edilsontransfer
+senha: edilsontransferadmin
