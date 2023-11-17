@@ -89,10 +89,11 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'DATABASE_NAME': 'basededados',
-        'DATABASE_USER': 'edilsontransferadmin',
-        'DATABASE_HOST': '127.0.0.1',
-        'DATABASE_PORT': '5432',
+        'NAME': 'basededados',
+        'USER': 'edilsontransfer',
+        'PASSWORD': 'edilsontransferadmin',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
