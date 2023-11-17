@@ -5,3 +5,6 @@ Senha: edilsontransferadmin
 Postgree
 user: edilsontransfer
 senha: edilsontransferadmin
+
+conectar ao Google Cloud:
+ssh mateus@104.197.54.123 -i '~/.ssh/id_rsa'
