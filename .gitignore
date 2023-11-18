@@ -117,3 +117,4 @@ local_settings.py
 _local_settings.py
 gunicorn-error-log
 static/
+info.txt
