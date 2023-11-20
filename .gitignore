@@ -76,7 +76,10 @@ celerybeat-schedule.*
 
 # Environments
 .env
-.venv/
+.venv
+env/
+venv/
+ENV/
 .env.bak/
 .venv.bak/
 
@@ -119,3 +122,6 @@ gunicorn-error-log
 db.sqlite3
 static/
 info.txt
+
+# Diretório media
+media/
