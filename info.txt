@@ -9,3 +9,23 @@ senha: edilsontransferadmin
 conectar ao Google Cloud:
 ssh mateus@104.197.54.123 -i '~/.ssh/id_rsa'
 
+
+permissões que funcionaram:
+
+(venv) mateus@web-01:~/app_repo$ ls -l
+total 236
+drwxr-xr-x 3 www-data www-data   4096 Nov 20 09:55 EdilsonTransfer
+-rwxr-xr-x 1 www-data www-data     47 Nov 17 14:23 Procfile
+-rwxr-xr-x 1 www-data www-data   1701 Nov 17 14:23 README
+drwxr-xr-x 4 www-data www-data   4096 Nov 17 15:03 core
+-rwxr-xr-x 1 www-data www-data 179815 Nov 20 05:52 gunicorn-error-log
+-rwxr-xr-x 1 www-data www-data   2652 Nov 17 14:23 gunicorn.txt
+-rwxr-xr-x 1 www-data www-data    226 Nov 18 15:44 info.txt
+-rwxr-xr-x 1 www-data www-data    720 Nov 18 10:20 manage.py
+drwxr-xr-x 3 www-data www-data   4096 Nov 17 14:23 media
+-rwxr-xr-x 1 www-data www-data    440 Nov 18 13:05 requirements.txt
+-rwxr-xr-x 1 www-data www-data     14 Nov 17 14:23 runtime.txt
+drwxr-xr-x 6 www-data www-data   4096 Nov 17 14:23 static
+drwxr-xr-x 7 www-data www-data   4096 Nov 17 14:23 staticfiles
+drwxr-xr-x 2 www-data www-data   4096 Nov 17 14:23 templates
+drwxr-xr-x 5 www-data www-data   4096 Nov 17 15:01 venv
