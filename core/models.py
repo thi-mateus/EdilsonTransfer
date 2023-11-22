@@ -46,7 +46,7 @@ class Slider(models.Model):
             # Corta a imagem para se ajustar ao tamanho desejado
             imagem = imagem.crop((left, top, right, bottom))
 
-            # Salva a imagem redimensionada e cortada de volta no caminho original
+            # Salva a imagem redimensionada e cortada no caminho original
             imagem.save(self.imagem.path)
 
         except (IOError, OSError, ValueError, Image.DecompressionBombError) as e:
