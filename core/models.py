@@ -13,7 +13,7 @@ class Slider(models.Model):
         default="Desejo fazer uma cotação com a Edilson Transfer.", verbose_name="Botão Agendar")
     # Tamanho da imagem: 1920 x 1280
     imagem = models.ImageField(
-        upload_to='index/hero-slider/', verbose_name="Imagem (1920x1280)")
+        upload_to='home/hero-slider/', verbose_name="Imagem (1920x1280)")
 
     def __str__(self):
         return f'{self.ordem}: {self.titulo}'
