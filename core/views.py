@@ -4,7 +4,7 @@ from core.forms import BookingForm
 from .models import Slider
 
 
-def index(request):
+def home(request):
     form = BookingForm()
 
     # Hero Slider
@@ -18,4 +18,4 @@ def index(request):
         'hero_slider': hero_slider
     }
 
-    return render(request, 'index.html', context)
+    return render(request, 'core/pages/home.html', context)
