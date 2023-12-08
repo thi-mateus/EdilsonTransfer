@@ -13,7 +13,7 @@ def agendar_viagem(request):
 
         if form.is_valid():
 
-            form.save(commit=False)
+            form.save()
 
             # Enviar e-mail de notificação
             email_agendamento(form)

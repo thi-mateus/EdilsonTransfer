@@ -29,3 +29,11 @@ drwxr-xr-x 6 www-data www-data   4096 Nov 17 14:23 static
 drwxr-xr-x 7 www-data www-data   4096 Nov 17 14:23 staticfiles
 drwxr-xr-x 2 www-data www-data   4096 Nov 17 14:23 templates
 drwxr-xr-x 5 www-data www-data   4096 Nov 17 15:01 venv
+
+
+Deploy
+python3 manage.py collectstatic
+git add .
+git commit -m 'migrations email'
+git push && git push app_bare main
+ssh google-cloud 'cd ~/app_repo ; git pull origin main ; sudo systemctl restart edilsontransfer'
