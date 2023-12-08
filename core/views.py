@@ -1,21 +1,19 @@
 from django.shortcuts import render
+from django.contrib import messages
 
-from core.forms import BookingForm
 from .models import Slider
+from viagens.forms import ViagemForm
 
 
 def home(request):
-    form = BookingForm()
-
+    print(request.user)
     # Hero Slider
     hero_slider = Slider.objects.all().order_by('ordem')
 
-    for slider in hero_slider:
-        print(slider.imagem.url)
+    # Booking area
 
     context = {
-        'form': form,
-        'hero_slider': hero_slider
+        'hero_slider': hero_slider,
     }
 
     return render(request, 'core/pages/home.html', context)

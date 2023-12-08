@@ -1,0 +1,75 @@
+{% load static %}
+
+<div class="booking-area">
+  <div class="container">
+    <div class="booking-form">
+      {% include 'global/partials/_messages.html' %}
+      <h4 class="booking-title">Agende sua viagem</h4>
+      <form
+        method="post"
+        action="{% url 'agendar_viagem' %}"
+        class="form-group"
+        autocomplete="off"
+      >
+
+        <div class="row">
+        
+
+          {% csrf_token %}
+        
+          {% for field in form %}
+            <div class="col-lg-3">
+              <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {% if field.field.widget.input_type == 'select' %}
+                  <select
+                    class="select"
+                    id="{{ field.id_for_label }}"
+                    name="{{ field.name }}"
+                  >
+                    <option value="" disabled selected>{{ field.field.widget.attrs.placeholder }}</option>
+                    {% for choice in field.field.choices %}
+                      <option value="{{ choice.0 }}" {% if choice.0 == field.value.value %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                  </select>
+
+                {% elif field.field.widget.input_type == 'checkbox' %}
+                  <input
+
+                    class="{{ field.field.widget.attrs.class }}"
+                    id="{{ field.id_for_label }}"
+                    name="{{ field.name }}"
+                    {% if field.value %}checked{% endif %}
+                  />
+                  
+                {% else %}
+                  <input
+                    class="{{ field.field.widget.attrs.class }}"
+                    id="{{ field.id_for_label }}"
+                    name="{{ field.name }}"
+                    placeholder="{{ field.field.widget.attrs.placeholder }}"
+                    value="{{ field.value.value }}"
+                  />
+                {% endif %}
+        
+                <!-- Exibir mensagens de erro para o campo -->
+                {% for error in field.error %}
+                  <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+
+              </div>
+            </div>
+          {% endfor %}
+        
+
+          <div class="col-lg-2 align-self-end">
+            <button class="theme-btn" type="submit">
+              Reservar<i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,126 +1,25 @@
 {% load static %}
 
-<div class="booking-area">
-    <div class="container">
-      <div class="booking-form">
-        <h4 class="booking-title">Agende sua viagem</h4>
-        <form method="post">
-          {% csrf_token %}
-          <div class="row">
-            <div class="col-lg-3">
-              <div class="form-group">
-                <label for="{{ form.local_embarque.id_for_label }}"
-                  >{{ form.local_embarque.label }}</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="{{ form.local_embarque.id_for_label }}"
-                  name="{{ form.local_embarque.name }}"
-                  placeholder="{{ form.local_embarque.field.widget.attrs.placeholder }}"
-                  value="{{ form.local_embarque.value.value }}"
-                />
-                <i class="far fa-location-dot"></i>
-              </div>
-            </div>
-            <div class="col-lg-3">
-              <div class="form-group">
-                <label>{{ form.local_desembarque.label }}</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="{{ form.local_desembarque.id_for_label }}"
-                  name="{{ form.local_desembarque.name }}"
-                  placeholder="{{ form.local_desembarque.field.widget.attrs.placeholder }}"
-                  value="{{ form.local_desembarque.value.value }}"
-                />
-                <i class="far fa-location-dot"></i>
-              </div>
-            </div>
-            <div class="col-lg-3">
-              <div class="form-group">
-                <label>{{ form.passageiros.label }}</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="{{ form.passageiros.id_for_label }}"
-                  name="{{ form.passageiros.name }}"
-                  placeholder="{{ form.passageiros.field.widget.attrs.placeholder }}"
-                  value="{{ form.passageiros.value.value }}"
-                />
-                <i class="far fa-user-tie"></i>
-              </div>
-            </div>
-            <div class="col-lg-3">
-              <div class="form-group">
-                <label>{{ form.tipo_veiculo.label }}</label>
-                <select
-                  class="select"
-                  id="{{ form.tipo_veiculo.id_for_label }}"
-                  name="{{ form.tipo_veiculo.name }}"
-                >
-                  <option value="" disabled selected>{{ form.tipo_veiculo.field.widget.attrs.placeholder }}</option>
-                  {% for choice in form.tipo_veiculo.field.choices %}
-                    <option value="{{ choice.0 }}" {% if choice.0 == form.tipo_veiculo.value.value %}selected{% endif %}>{{ choice.1 }}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
-            <div class="col-lg-3">
-              <div class="form-group">
-                <label for="{{ form.data_embarque.id_for_label }}">
-                  {{ form.data_embarque.label }}
-                </label>
-                <input
-                  type="text"
-                  class="{{ form.data_embarque.field.widget.attrs.class }}"
-                  id="{{ form.data_embarque.id_for_label }}"
-                  name="{{ form.data_embarque.name }}"
-                  placeholder="{{ form.data_embarque.field.widget.attrs.placeholder }}"
-                  value="{{ form.data_embarque.value.value }}"
-                />
-                <i class="far fa-calendar-days"></i>
-              </div>
-            </div>
-            <div class="col-lg-2">
-              <div class="form-group">
-                <label for="{{ form.hora_embarque.id_for_label }}">
-                  {{ form.hora_embarque.label }}
-                </label>
-                <input
-                  type="text"
-                  class="{{ form.hora_embarque.field.widget.attrs.class }}"
-                  id="{{ form.hora_embarque.id_for_label }}"
-                  name="{{ form.hora_embarque.name }}"
-                  placeholder="{{ form.hora_embarque.field.widget.attrs.placeholder }}"
-                  value="{{ form.hora_embarque.value.value }}"
-                />
-                <i class="far fa-clock"></i>
-              </div>
-            </div>
-            <div class="col-lg-2">
-              <div class="form-group">
-                <label>{{ form.idade_motorista.label }}</label>
-                <select
-                  class="select"
-                  id="{{ form.idade_motorista.id_for_label }}"
-                  name="{{ form.idade_motorista.name }}"
-                >
-                  <option value="" disabled selected>{{ form.idade_motorista.field.widget.attrs.placeholder }}</option>
-                  {% for choice in form.idade_motorista.field.choices %}
-                    <option value="{{ choice.0 }}" {% if choice.0 == form.idade_motorista.value.value %}selected{% endif %}>{{ choice.1 }}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
+<div class="booking-area" id="booking-area">
+  <div class="container">
+    <div class="booking-form">
+      {% if messages %}
+        {% include 'global/partials/_messages.html' %}
+      {% else %}
+        <div class="text-center">
+          <h4 class="booking-title">Agende sua viagem agora!</h4>
+          <p>Deixe seus dados e entraremos em contato com você!</p>
+        </div>
 
-            <div class="col-lg-2 align-self-end">
-              <button class="theme-btn" type="submit">
-                Reservar Táxi<i class="fas fa-arrow-right"></i>
-              </button>
-            </div>
+        <div class="row">        
+          <div class="col-lg-2 mx-auto text-center">
+            <a href="{% url 'viagens:agendar_viagem' %}" class="theme-btn mt-4"
+                >Agendar<i class="fas fa-arrow-right"></i
+              ></a>
           </div>
-        </form>
-      </div>
+        </div>
+      {% endif %}
+      
     </div>
+  </div>
 </div>

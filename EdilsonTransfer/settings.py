@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from django.contrib.messages import constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,8 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'core',
+    'crispy_forms',
     'bootstrap4',
+
+    'core',
+    'viagens',
 ]
 
 MIDDLEWARE = [
@@ -144,11 +148,25 @@ SECURE_SSL_REDIRECT = os.environ.get(
     'DJANGO_SECURE_SSL_REDIRECT', 'False') == 'True'
 
 # Configurações de e-mail
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-'''
-EMAIL_HOST = 'localhost'
-EMAIL_HOST_USER = 'no-reply@seudominio.com.br'
-EMAIL_PORT = 587
-EMAIL_USER_TLS = True
-EMAIL_HOST_PASSWORD = 'sua-senha'
-'''
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+
+# Configuração opcional: Para armazenar mensagens de e-mail na saída da console durante o desenvolvimento
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+MESSAGE_TAGS = {
+    constants.DEBUG: 'alert-primary',
+    constants.ERROR: 'alert-danger',
+    constants.WARNING: 'alert-warning',
+    constants.SUCCESS: 'alert-success',
+    constants.INFO: 'alert-info',
+}

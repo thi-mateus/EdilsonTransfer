@@ -1,0 +1,136 @@
+{% load static %}
+
+<div class="book-ride py-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <div class="booking-form">
+                    <div class="book-ride-head">
+                        <h4 class="booking-title">Faça Sua Reserva Hoje</h4>
+                        <p>Viaje com tranquilidade em nossos veículos e conte com motoristas dedicados. Seu percurso é nossa prioridade.</p>
+                    </div>
+                    {% include 'global/partials/_messages.html' %}
+
+                    <form
+                        method="post"
+                        action="{% url 'viagens:agendar_viagem' %}"
+                        class="form-group"
+                        autocomplete="off"
+                    >
+
+                        <div class="row">
+                        
+
+                        {% csrf_token %}
+                        
+                        {% for field in form %}
+                            {% if field.field.widget.attrs.name == 'name' or field.field.widget.attrs.name == 'email' or field.field.widget.attrs.name == 'phone' %}
+                                {# Renderizar nome, email e telefone #}
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                        <input
+                                                class="{{ field.field.widget.attrs.class }}"
+                                                id="{{ field.id_for_label }}"
+                                                name="{{ field.name }}"
+                                                placeholder="{{ field.field.widget.attrs.placeholder }}"
+                                                value="{{ field.value.value }}"
+                                                {% if field.field.widget.attrs.required %}required{% endif %}
+                                            />
+                                        <!-- Exibir mensagens de erro para o campo -->
+                                        {% if field.errors %}
+                                            <ul class="messages">
+                                                {% for error in field.errors %}
+                                                    <li class="text-danger">{{ error }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            
+                            {% elif field.field.widget.attrs.name == 'msg' %}
+                                {# Renderizar o campo de mensagem aqui #}
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                        <textarea
+                                            class="{{ field.field.widget.attrs.class }}"
+                                            placeholder="{{ field.field.widget.attrs.placeholder }}"
+                                            rows="{{ field.field.widget.attrs.rows }}"
+                                            name="{{ field.name }}"
+                                            {% if field.field.widget.attrs.required %}required{% endif %}
+                                        ></textarea>
+                                        <!-- Exibir mensagens de erro para o campo -->
+                                        {% if field.errors %}
+                                            <ul class="messages">
+                                                {% for error in field.errors %}
+                                                    <li class="text-danger">{{ error }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                
+                            {% else %}
+                                {# Renderizar outros campos aqui #}
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                        {% if field.field.widget.input_type == 'select' %}
+                                            <select
+                                                class="select"
+                                                id="{{ field.id_for_label }}"
+                                                name="{{ field.name }}"
+                                                {% if field.field.widget.attrs.required %}required{% endif %}
+                                            >
+                                                <option value="" disabled selected>{{ field.field.widget.attrs.placeholder }}</option>
+                                                {% for choice in field.field.choices %}
+                                                    <option value="{{ choice.0 }}" {% if choice.0 == field.value.value %}selected{% endif %}>{{ choice.1 }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        {% elif field.field.widget.input_type == 'checkbox' %}
+                                            <input
+                                                class="{{ field.field.widget.attrs.class }}"
+                                                id="{{ field.id_for_label }}"
+                                                name="{{ field.name }}"
+                                                {% if field.field.widget.attrs.required %}required{% endif %}
+                                                {% if field.value %}checked{% endif %}
+                                            />
+                                        {% else %}
+                                            <input
+                                                class="{{ field.field.widget.attrs.class }}"
+                                                id="{{ field.id_for_label }}"
+                                                name="{{ field.name }}"
+                                                placeholder="{{ field.field.widget.attrs.placeholder }}"
+                                                value="{{ field.value.value }}"
+                                                {% if field.field.widget.attrs.required %}required{% endif %}
+                                            />
+                                        {% endif %}
+
+                                        <!-- Exibir mensagens de erro para o campo -->
+                                        {% if field.errors %}
+                                            <ul class="messages">
+                                                {% for error in field.errors %}
+                                                    <li class="text-danger">{{ error }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                        
+                            <div class="col-lg-3 mx-auto">
+                                <button class="theme-btn" type="submit">
+                                Reservar<i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

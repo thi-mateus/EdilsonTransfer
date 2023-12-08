@@ -260,14 +260,22 @@ Version         : 1.0
     // date picker 
     if ($('.date-picker').length) {
         $(function () {
-            $(".date-picker").datepicker();
+            $(".date-picker").datepicker({
+                format: 'dd/mm/yyy',
+                autoclose: true,
+                language: 'pt-BR' 
+            });
         });
     }
 
     // time picker 
     if ($('.time-picker').length) {
         $(function () {
-            $(".time-picker").timepicker();
+            $(".time-picker").timepicker({
+                timeFormat: 'HH:mm', // ou 'HH:mm' dependendo do formato desejado
+                interval: 15, // intervalo de minutos
+                scrollbar: true
+            });
         });
     }
 
