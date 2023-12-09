@@ -29,3 +29,7 @@ class Viagem(models.Model):
 
     def __str__(self):
         return f'{self.nome_usuario}: de {self.origem} para {self.destino} em {self.data_ida} às {self.hora_ida}'
+
+    class Meta:
+        verbose_name = "Viagem"
+        verbose_name_plural = "Viagens"
