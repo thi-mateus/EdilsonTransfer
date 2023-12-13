@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    404 Error |
+{% endblock %}
+
+
+{% block content %}
+      
+<!-- breadcrumb -->
+{% comment %} <div class="site-breadcrumb" style="background: url('{% static 'images/breadcrumb/slider-2.png' %})">
+    <div class="container">
+        <h2 class="breadcrumb-title">404 Error</h2>
+        <ul class="breadcrumb-menu">
+            <li><a href="{% url 'home' %}">Home</a></li>
+
+            <li class="active">404 Error</li>
+        </ul>
+    </div>
+</div> {% endcomment %}
+<!-- breadcrumb end -->
+
+
+<!-- error area -->
+<div class="error-area py-120">
+    <div class="container">
+        <div class="col-md-8 mx-auto">
+            <div class="error-wrapper">
+                <div class="error-img">
+                    <img src="{% static 'images/error/404.png' %}" alt="">
+                </div>
+                <h2>Ops... Página não encontrada!</h2>
+                <p>Sem problema, vamos tentar novamente. O que você procura?.</p>
+                <div
+                  class="hero-btn justify-content-center"
+                  data-animation="fadeInUp"
+                  data-delay="1s"
+                >
+                    <a href="{% url 'home' %}" class="theme-btn">Home <i class="far fa-home"></i></a> 
+                    <a href="https://api.whatsapp.com/send?phone=+5584992018601&text={{slider.botao_agendar}}" target="_blank"
+                    class="theme-btn">Agendar<i class="fa-brands fa-whatsapp"></i></a> 
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- error area end -->
+
+{% endblock %}

@@ -3,7 +3,7 @@ import os
 from django.core.mail import send_mail
 from django.core.mail.message import EmailMessage
 
-from utils.datetime_utils import format_date, format_time
+from utils.datetime_utils import format_date, format_time, format_datetime
 
 
 def enviar_email(subject, message, from_email, recipient_list):
@@ -11,13 +11,13 @@ def enviar_email(subject, message, from_email, recipient_list):
               recipient_list, fail_silently=False)
 
 
-def email_agendamento(form):
+def email_agendamento(viagem):
     subject = "Agendamento de Viagem | Edilson Transfer"
     from_email = 'edilsontransfernatal@gmail.com'
-    print(from_email)
-    message = msg_agendamento(form)
 
-    to = [form.cleaned_data.get("email_usuario"),]
+    message = msg_agendamento(viagem)
+
+    to = [viagem.email_usuario,]
 
     mail = EmailMessage(
         subject=subject,
@@ -39,24 +39,27 @@ def email_agendamento(form):
     mail.send()
 
 
-def msg_agendamento(form):
-    nome_usuario = form.cleaned_data.get("nome_usuario")
-    email_usuario = form.cleaned_data.get("email_usuario")
-    telefone_usuario = form.cleaned_data.get("telefone_usuario")
+def msg_agendamento(viagem):
 
-    origem = form.cleaned_data.get("origem")
-    destino = form.cleaned_data.get("destino")
+    hora_solicitacao = viagem.hora_solicitacao
 
-    data_ida = form.cleaned_data.get("data_ida")
-    hora_ida = form.cleaned_data.get("hora_ida")
-    data_volta = form.cleaned_data.get("data_volta")
-    hora_volta = form.cleaned_data.get("hora_volta")
+    nome_usuario = viagem.nome_usuario
+    email_usuario = viagem.email_usuario
+    telefone_usuario = viagem.telefone_usuario
 
-    ida_e_volta = form.cleaned_data.get("ida_e_volta")
+    origem = viagem.origem
+    destino = viagem.destino
 
-    passageiros = form.cleaned_data.get("passageiros")
+    data_ida = viagem.data_ida
+    hora_ida = viagem.hora_ida
+    data_volta = viagem.data_volta
+    hora_volta = viagem.hora_volta
 
-    mensagem = form.cleaned_data.get("mensagem")
+    ida_e_volta = viagem.ida_e_volta
+
+    passageiros = viagem.passageiros
+
+    mensagem = viagem.mensagem
 
     saudacao_cliente = ""
     if nome_usuario:
@@ -115,10 +118,16 @@ def msg_agendamento(form):
 
     if mensagem:
         mensagem_ao_motorista = f'MENSAGEM AO MOTORISTA\n'
-        mensagem_ao_motorista += f'Mensagem: {mensagem}'
+        mensagem_ao_motorista += f'Mensagem: {mensagem}\n'
 
-    mensagem_cliente = f'{saudacao_cliente}\n{dados_cliente}\n{dados_viagem}\n{mensagem_ao_motorista}'
-    mensagem_motorista = f'{saudacao_motorista}\n{dados_cliente}\n{dados_viagem}\n{mensagem_ao_motorista}'
+    datetime_solicitacao = ""
+
+    if hora_solicitacao:
+        datetime_solicitacao = f'DATA DA SOLICITAÇÃO\n'
+        datetime_solicitacao += f'Data e Hora: {format_datetime(hora_solicitacao)}'
+
+    mensagem_cliente = f'{saudacao_cliente}\n{dados_cliente}\n{dados_viagem}\n{mensagem_ao_motorista}\n{datetime_solicitacao}'
+    mensagem_motorista = f'{saudacao_motorista}\n{dados_cliente}\n{dados_viagem}\n{mensagem_ao_motorista}\n{datetime_solicitacao}'
 
     mensagem_agendamento = {
         'mensagem_cliente': mensagem_cliente,

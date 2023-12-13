@@ -1,12 +1,10 @@
 from django.shortcuts import render
-from django.contrib import messages
 
 from .models import Slider
-from viagens.forms import ViagemForm
 
 
 def home(request):
-    print(request.user)
+
     # Hero Slider
     hero_slider = Slider.objects.all().order_by('ordem')
 

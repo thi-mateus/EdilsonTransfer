@@ -15,7 +15,7 @@ def format_time(time):
 
 def format_datetime(datetime):
     local_datetime = datetime.astimezone(timezone.get_current_timezone())
-    formatted_datetime = local_datetime.strftime("%d/%m/%Y %H:%M")
+    formatted_datetime = local_datetime.strftime("%d/%m/%Y %H:%M:%S")
     return formatted_datetime
 
 

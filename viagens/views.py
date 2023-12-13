@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
 
+from django.utils import timezone
+
 
 from viagens.forms import ViagemForm
 from utils.email_utils import email_agendamento
@@ -13,10 +15,10 @@ def agendar_viagem(request):
 
         if form.is_valid():
 
-            form.save()
+            viagem = form.save()
 
             # Enviar e-mail de notificação
-            email_agendamento(form)
+            email_agendamento(viagem)
 
             messages.success(
                 request, 'Viagem agendada com sucesso. Entraremos em contato.')

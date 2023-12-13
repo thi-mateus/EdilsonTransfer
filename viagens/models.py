@@ -1,7 +1,10 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Viagem(models.Model):
+    hora_solicitacao = models.DateTimeField(
+        verbose_name="Hora da Solicitação")
     nome_usuario = models.CharField(
         max_length=100, verbose_name="Nome", blank=False)
     email_usuario = models.EmailField(
@@ -26,6 +29,12 @@ class Viagem(models.Model):
         '1', 'Somente Ida'), ('2', 'Ida e Volta')], verbose_name="Ida e Volta?", blank=True, null=True)
     mensagem = models.TextField(
         verbose_name="Sua Mensagem", blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.hora_solicitacao:
+            self.hora_solicitacao = timezone.now()
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.nome_usuario}: de {self.origem} para {self.destino} em {self.data_ida} às {self.hora_ida}'
